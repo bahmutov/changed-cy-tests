@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-describe('spec-c changed', () => {
+describe('spec-c', () => {
   it('works', () => {
     cy.wait(5000)
   })
