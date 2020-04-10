@@ -44,7 +44,8 @@ jobs:
       - run: echo Merged commit SHA ${{ github.event.pull_request.merge_commit_sha }}
       - run: echo Merged commit SHA 2 ${{ github.event.merge_commit_sha }}
 
-      - run: git checkout ${{ github.event.merge_commit_sha }}
+      - run: git checkout ${{ github.event.pull_request.merge_commit_sha }}
+      - run: cat .github/workflows/main.yml
       - run: git diff --name-only origin/master origin/changed-tests
 
       - name: Cypress run 🧪
