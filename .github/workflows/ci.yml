@@ -31,6 +31,11 @@ jobs:
       #     ls -la .github/workflows
       #     git checkout -
 
+      - run: cat .github/workflows/main.yml
+      - run: git status
+      - name: current commit SHA
+        run: git rev-parse HEAD
+
       - run: git diff --name-only origin/master origin/changed-tests
 
       - name: Cypress run 🧪
