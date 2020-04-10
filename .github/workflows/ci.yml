@@ -4,13 +4,16 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master 🛎
-        uses: actions/checkout@v2
-        with:
-          ref: master
+      # - name: Checkout master 🛎
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: master
 
       - name: Checkout current 🛎
         uses: actions/checkout@v2
+
+      - run: git fetch --no-tags --depth=1 origin master
+      - run: git branch
 
       # - run: |
       #     git fetch --no-tags --depth=1 origin master
