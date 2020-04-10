@@ -1,4 +1,5 @@
 # run full set of Cypress tests on every push to master branch
+# current master has this line 🎉
 name: main
 on:
   push:
