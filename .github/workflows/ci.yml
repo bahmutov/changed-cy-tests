@@ -4,8 +4,44 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
 
-      - name: Cypress run
+      # - run: git ls-remote
+      - name: Checkout head and target branches 👯‍♂️
+        run: |
+          git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
+          git fetch --no-tags --depth=1 origin ${{ github.head_ref }}
+          # get the actual source for two branches
+          git checkout origin/${{ github.base_ref }}
+          git checkout origin/${{ github.head_ref }}
+          # get back to the merge commit
+          git checkout ${{ github.sha }}
+
+      - name: All changed files 🗂
+        run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }}
+
+      - name: Just changed Cypress specs 🗂
+        run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }} -- cypress/integration
+
+      - name: Install Cypress and dependencies 📦
         uses: cypress-io/github-action@v1
+        with:
+          runTests: false
+
+      # quickly run just the changed specs to fail fast
+      - name: Maybe run just the changed Cypress tests ⏱
+        run: |
+          CHANGED_SPECS=$(git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }} -- cypress/integration)
+          if [ -n "$CHANGED_SPECS" ]; then
+            echo "Running the following changed specs"
+            echo $CHANGED_SPECS
+            npx cypress run --spec $CHANGED_SPECS
+          fi
+
+      # run all tests to be sure
+      - name: Run all Cypress tests 🧪
+        uses: cypress-io/github-action@v1
+        with:
+          # we have already installed all dependencies above
+          install: false
