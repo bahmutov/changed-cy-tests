@@ -4,13 +4,19 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎
+      - name: Checkout master 🛎
         uses: actions/checkout@v2
-      - run: |
-          git fetch --no-tags --depth=1 origin master
-          git checkout -b master
-          ls -la
-          git checkout -
+        with:
+          ref: master
+
+      - name: Checkout current 🛎
+          uses: actions/checkout@v2
+
+      # - run: |
+      #     git fetch --no-tags --depth=1 origin master
+      #     git checkout -b master
+      #     ls -la .github/workflows
+      #     git checkout -
 
       - run: git diff --name-only master
 
