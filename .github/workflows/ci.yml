@@ -15,7 +15,7 @@ jobs:
       - run: git fetch --no-tags --depth=1 origin master
       - run: git fetch --no-tags --depth=1 origin changed-tests
 
-      - run: git branch
+      # - run: git branch
 
       # - run: |
       #     git fetch --no-tags --depth=1 origin master
@@ -23,7 +23,7 @@ jobs:
       #     ls -la .github/workflows
       #     git checkout -
 
-      - run: git diff --name-only master
+      - run: git diff --name-only master changed-tests
 
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
