@@ -41,7 +41,8 @@ jobs:
       - run: git status
       - name: current commit SHA
         run: git rev-parse HEAD
-      - run: echo "Merged commit SHA $MERGE_COMMIT_SHA"
+      - run: echo Merged commit SHA ${{ github.event.pull_request.merge_commit_sha }}
+      - run: echo Merged commit SHA 2 ${{ github.event.merge_commit_sha }}
 
       - run: git diff --name-only origin/master origin/changed-tests
 
