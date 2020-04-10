@@ -12,6 +12,9 @@ jobs:
       - name: Checkout current 🛎
         uses: actions/checkout@v2
 
+      - name: current commit SHA
+        run: git rev-parse HEAD
+
       - run: git ls-remote
       - run: git fetch --no-tags --depth=1 origin master
       - run: |
