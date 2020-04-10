@@ -1,4 +1,4 @@
-# run full set of Cypress tests on every push to master branch!
+# run full set of Cypress tests on every push to master branch
 name: main
 on:
   push:
