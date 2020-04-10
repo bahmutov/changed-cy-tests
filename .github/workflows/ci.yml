@@ -13,7 +13,14 @@ jobs:
         uses: actions/checkout@v2
 
       - run: git fetch --no-tags --depth=1 origin master
+      - run: |
+          git checkout master
+          ls -la .github/workflows
+
       - run: git fetch --no-tags --depth=1 origin changed-tests
+      - run: |
+          git checkout changed-tests
+          ls -la .github/workflows
 
       # - run: git branch
 
@@ -23,7 +30,7 @@ jobs:
       #     ls -la .github/workflows
       #     git checkout -
 
-      - run: git diff --name-only master changed-tests
+      # - run: git diff --name-only master changed-tests
 
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
