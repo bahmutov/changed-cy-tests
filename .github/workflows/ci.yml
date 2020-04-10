@@ -4,49 +4,22 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout master 🛎
-      #   uses: actions/checkout@v2
-      #   with:
-      #     ref: master
-
-      - name: Checkout current 🛎
+      - name: Checkout 🛎
         uses: actions/checkout@v2
 
-      - name: current commit SHA
+      # - run: git ls-remote
+      - name: Checkout head and target branches 👯‍♂️
         run: |
-          git rev-parse HEAD
-          # save it to get back in the future
-          export MERGE_COMMIT_SHA=$(git rev-parse HEAD)
+          git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
+          git fetch --no-tags --depth=1 origin ${{ github.head_ref }}
+          # get the actual source for two branches
+          git checkout origin/${{ github.base_ref }}
+          git checkout origin/${{ github.head_ref }}
+          # get back to the merge commit
+          git checkout ${{ github.sha }}
 
-      - run: git ls-remote
-      - run: git fetch --no-tags --depth=1 origin master
-      - run: |
-          git checkout origin/master
-          ls -la .github/workflows
-
-      - run: git fetch --no-tags --depth=1 origin changed-tests
-      - run: |
-          git checkout origin/changed-tests
-          ls -la .github/workflows
-
-      # - run: git branch
-
-      # - run: |
-      #     git fetch --no-tags --depth=1 origin master
-      #     git checkout -b master
-      #     ls -la .github/workflows
-      #     git checkout -
-
-      - run: cat .github/workflows/main.yml
-      - run: git status
-      - name: current commit SHA
-        run: git rev-parse HEAD
-      - run: echo Merged commit SHA ${{ github.event.pull_request.merge_commit_sha }}
-      - run: echo Merged commit SHA 2 ${{ github.sha }}
-
-      - run: git checkout ${{ github.sha }}
-      - run: cat .github/workflows/main.yml
-      - run: git diff --name-only origin/master origin/changed-tests
+      - name: Changed files 🗂
+        run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }}
 
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
