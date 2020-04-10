@@ -9,8 +9,10 @@ jobs:
       - run: |
           git fetch --no-tags --depth=1 origin master
           git checkout -b master
+          ls -la
           git checkout -
-          git diff --name-only master
+
+      - run: git diff --name-only master
 
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
