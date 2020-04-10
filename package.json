@@ -1,0 +1,24 @@
+{
+  "name": "changed-cy-tests",
+  "version": "1.0.0",
+  "description": "Example GitHub Action running changed Cypress specs against master first, then all the tests",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/changed-cy-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bahmutov/changed-cy-tests/issues"
+  },
+  "homepage": "https://github.com/bahmutov/changed-cy-tests#readme",
+  "devDependencies": {
+    "cypress": "4.3.0"
+  }
+}
