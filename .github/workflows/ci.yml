@@ -9,7 +9,8 @@ jobs:
       - run: |
           git fetch --no-tags --depth=1 origin master
           git checkout -b master
-          git checkout ${{ github.event.pull_request.head.sha }}
+          git checkout -
+          git diff --name-only master
 
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
