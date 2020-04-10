@@ -31,7 +31,7 @@ jobs:
       #     ls -la .github/workflows
       #     git checkout -
 
-      # - run: git diff --name-only master changed-tests
+      - run: git diff --name-only origin/master origin/changed-tests
 
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
