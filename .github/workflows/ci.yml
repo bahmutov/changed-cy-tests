@@ -41,7 +41,7 @@ jobs:
       - run: git status
       - name: current commit SHA
         run: git rev-parse HEAD
-      - run: echo 'Merged commit SHA $MERGE_COMMIT_SHA'
+      - run: echo "Merged commit SHA $MERGE_COMMIT_SHA"
 
       - run: git diff --name-only origin/master origin/changed-tests
 
