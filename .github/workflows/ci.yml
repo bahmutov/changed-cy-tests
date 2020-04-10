@@ -4,8 +4,12 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+      - run: |
+          git fetch --no-tags --depth=1 origin master
+          git checkout -b master
+          git checkout ${{ github.event.pull_request.head.sha }}
 
-      - name: Cypress run
+      - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
