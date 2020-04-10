@@ -29,6 +29,7 @@ jobs:
         with:
           runTests: false
 
+      # quickly run just the changed specs to fail fast
       - name: Maybe run just the changed Cypress tests ⏱
         run: |
           CHANGED_SPECS=$(git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }} -- cypress/integration)
@@ -38,6 +39,7 @@ jobs:
             npx cypress run --spec $CHANGED_SPECS
           fi
 
+      # run all tests to be sure
       - name: Run all Cypress tests 🧪
         uses: cypress-io/github-action@v1
         with:
