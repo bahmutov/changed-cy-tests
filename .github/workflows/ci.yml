@@ -15,11 +15,13 @@ jobs:
       - run: git fetch --no-tags --depth=1 origin master
       - run: |
           git checkout master
+          git pull
           ls -la .github/workflows
 
       - run: git fetch --no-tags --depth=1 origin changed-tests
       - run: |
           git checkout changed-tests
+          git pull
           ls -la .github/workflows
 
       # - run: git branch
