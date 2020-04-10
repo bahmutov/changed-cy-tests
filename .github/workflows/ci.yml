@@ -21,5 +21,8 @@ jobs:
       - name: Changed files 🗂
         run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }}
 
+      - name: Changed Cypress specs 🗂
+        run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }} -- cypress/integration
+
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v1
