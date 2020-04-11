@@ -22,6 +22,7 @@ jobs:
         run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }}
 
       - name: Just changed Cypress specs 🗂
+        # use "-- <folder path>" to limit changed files to specific subfolder
         run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }} -- cypress/integration
 
       - name: Install Cypress and dependencies 📦
