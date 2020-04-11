@@ -30,6 +30,9 @@ And after that we can run all specs using [Cypress GitHub Action](https://github
 
 The combination of fail fast on the changed specs + run all specs afterwards feels good.
 
+[Cypress Dashboard](https://dashboard.cypress.io/projects/aobpjx/runs/)
+
+![Cypress dashboard run](images/run.png)
 
 [ci image]: https://github.com/bahmutov/changed-cy-tests/workflows/main/badge.svg?branch=master
 [ci url]: https://github.com/bahmutov/changed-cy-tests/actions
