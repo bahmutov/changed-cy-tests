@@ -40,7 +40,7 @@ jobs:
           if [ -n "$CHANGED_SPECS" ]; then
             echo "Running the following changed specs"
             echo $CHANGED_SPECS
-            npx cypress run --record --group "Changed specs" --spec $CHANGED_SPECS
+            npx cypress run --record --group "Changed specs" --ci-build-id ${{ github.sha }} --spec $CHANGED_SPECS
           fi
 
       # run all tests to be sure
@@ -54,3 +54,4 @@ jobs:
           install: false
           record: true
           group: All specs
+          ci-build-id: ${{ github.sha }}
