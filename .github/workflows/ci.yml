@@ -33,6 +33,7 @@ jobs:
       # quickly run just the changed specs to fail fast
       - name: Maybe run just the changed Cypress tests ⏱
         env:
+          # pass the Dashboard record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         run: |
           CHANGED_SPECS=$(git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }} -- cypress/integration)
@@ -45,6 +46,9 @@ jobs:
       # run all tests to be sure
       - name: Run all Cypress tests 🧪
         uses: cypress-io/github-action@v1
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         with:
           # we have already installed all dependencies above
           install: false
