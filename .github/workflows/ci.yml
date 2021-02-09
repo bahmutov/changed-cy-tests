@@ -12,11 +12,6 @@ jobs:
         run: |
           git fetch --no-tags --depth=1 origin ${{ github.base_ref }}
           git fetch --no-tags --depth=1 origin ${{ github.head_ref }}
-          # get the actual source for two branches
-          git checkout origin/${{ github.base_ref }}
-          git checkout origin/${{ github.head_ref }}
-          # get back to the merge commit
-          git checkout ${{ github.sha }}
 
       - name: All changed files 🗂
         run: git diff --name-only origin/${{ github.base_ref }} origin/${{ github.head_ref }}
